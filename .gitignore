@@ -2,8 +2,13 @@
 reports/
 .idea/
 .git/
+.gradle/
+gradle/
 mvnrepo
 allure-results
 
 # Compiled source #
 *.class
+*.gradle
+gradlew
+gradlew.*
