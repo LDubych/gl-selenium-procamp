@@ -9,6 +9,3 @@ allure-results
 
 # Compiled source #
 *.class
-*.gradle
-gradlew
-gradlew.*
