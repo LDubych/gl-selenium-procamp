@@ -3,9 +3,11 @@ reports/
 .idea/
 .git/
 .gradle/
-gradle/
 mvnrepo
 allure-results
 
 # Compiled source #
 *.class
+
+
+.DS_Store
