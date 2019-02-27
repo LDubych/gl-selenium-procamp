@@ -12,7 +12,7 @@ public class BasicPageTest {
     public static void Setup() {
         driver = DriverHelper.getDriver();
         driver.get(baseUrl);
-        basicPage = new BasicPage(driver);
+        basicPage = new BasicPage();
     }
 
     @Test
