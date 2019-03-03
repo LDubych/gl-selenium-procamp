@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -39,11 +40,12 @@ public class DriverHelper {
                         tmp = new ChromeDriver();
                         break;
                 }
-                break;
             }
         }
         driver = tmp;
-        System.out.println("No env var");
+        if (driver == null){
+            System.out.println("No env var");
+        }
 
     }
     public static WebDriver getDriver(){
@@ -54,8 +56,13 @@ public class DriverHelper {
     }
 
     static void clickElement(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    static void clickElement(String locator) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(locator))).click();
     }
 
     static void inputText(WebElement element, String text, int timeOutInSeconds) {
@@ -72,6 +79,16 @@ public class DriverHelper {
     static void waitPageLoad(){
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href=\"http://localhost/litecart/admin/\"]")));
+    }
+
+    static List<WebElement> getElements(String selector) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(selector)));
+    }
+
+    static List<WebElement> getElements(String selector, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(selector)));
     }
 
 }
